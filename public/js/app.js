@@ -2016,7 +2016,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
  //sample
 
  //sample
@@ -2056,9 +2055,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.results = _api_responses_js__WEBPACK_IMPORTED_MODULE_0__.foursquare.results; // console.log('this.results', this.results)
 
         _this.cityInfo = _objectSpread({}, _api_responses_js__WEBPACK_IMPORTED_MODULE_0__.openWeather.city);
-        _this.weatherResults = _toConsumableArray(_api_responses_js__WEBPACK_IMPORTED_MODULE_0__.openWeather.list); // console.log('this.cityInfo', this.cityInfo)
-        // console.log('this.weatherResults', this.weatherResults)
-        // console.log(test)
+        _this.weatherResults = _toConsumableArray(_api_responses_js__WEBPACK_IMPORTED_MODULE_0__.openWeather.list);
+        console.log('this.cityInfo', _this.cityInfo);
+        console.log('this.weatherResults', _this.weatherResults); // console.log(test)
 
         _this.chunkedData.splice(0);
 
@@ -22347,92 +22346,44 @@ var render = function () {
                         key: "activator",
                         fn: function () {
                           return [
+                            _c(
+                              "v-list-item-icon",
+                              [
+                                _c("v-icon", { attrs: { size: "65" } }, [
+                                  _vm._v(
+                                    _vm._s(
+                                      result.sys.pod == "d"
+                                        ? "mdi-white-balance-sunny"
+                                        : "mdi-weather-night"
+                                    )
+                                  ),
+                                ]),
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
                             _c("v-list-item-content", [
-                              _c("div", [
-                                _c(
-                                  "span",
-                                  { staticClass: "text-left" },
-                                  [
-                                    _c("span", {
-                                      staticClass:
-                                        "overline mx-2 font-weight-bold",
-                                      domProps: {
-                                        textContent: _vm._s(
-                                          _vm.getConvertedUnixDateTime(
-                                            result.dt
-                                          )
-                                        ),
-                                      },
-                                    }),
-                                    _vm._v(" "),
-                                    _c("v-icon", { attrs: { size: "65" } }, [
-                                      _vm._v(
-                                        _vm._s(
-                                          result.sys.pod == "d"
-                                            ? "mdi-weather-sunny"
-                                            : "mdi-weather-night"
-                                        )
-                                      ),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("span", {
-                                      staticClass:
-                                        "overline mx-2 font-weight-bold",
-                                      domProps: {
-                                        textContent: _vm._s(
-                                          result.main.temp +
-                                            " °C | " +
-                                            _vm.convertTempToFahr(
-                                              result.main.temp
-                                            ) +
-                                            " °F"
-                                        ),
-                                      },
-                                    }),
-                                  ],
-                                  1
-                                ),
-                              ]),
+                              _c("span", {
+                                staticClass:
+                                  "overline mx-2 font-weight-bold text-md-body-1 text-xl-h3 text-lg-h3",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    _vm.getConvertedUnixDateTime(result.dt)
+                                  ),
+                                },
+                              }),
                               _vm._v(" "),
-                              _c("div", [
-                                _c(
-                                  "span",
-                                  { staticClass: "text-left" },
-                                  _vm._l(result.weather, function (info, ii) {
-                                    return _c("v-chip", {
-                                      key: ii + "A",
-                                      staticClass: "ma-2",
-                                      attrs: { small: "" },
-                                      domProps: {
-                                        textContent: _vm._s(
-                                          info.main + " - " + info.description
-                                        ),
-                                      },
-                                    })
-                                  }),
-                                  1
-                                ),
-                                _vm._v(" "),
-                                _c(
-                                  "span",
-                                  { staticClass: "text-right" },
-                                  [
-                                    _c("v-icon", { attrs: { size: "30" } }, [
-                                      _vm._v("mdi-water"),
-                                    ]),
-                                    _vm._v(" "),
-                                    _c("span", {
-                                      staticClass: "overline font-weight-bold",
-                                      domProps: {
-                                        textContent: _vm._s(
-                                          _vm.getPercentage(result.pop) + "%"
-                                        ),
-                                      },
-                                    }),
-                                  ],
-                                  1
-                                ),
-                              ]),
+                              _c("span", {
+                                staticClass: "overline mx-2 font-weight-bold",
+                                domProps: {
+                                  textContent: _vm._s(
+                                    Math.round(result.main.temp) +
+                                      " °C | " +
+                                      _vm.convertTempToFahr(result.main.temp) +
+                                      " °F"
+                                  ),
+                                },
+                              }),
                             ]),
                           ]
                         },

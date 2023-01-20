@@ -38,15 +38,15 @@
                     active-class="pink--text"
                 >
                     <template v-slot:activator>
+                        <v-list-item-icon>
+                            <v-icon size="65">{{ result.sys.pod == 'd' ? 'mdi-white-balance-sunny' : 'mdi-weather-night' }}</v-icon>
+                        </v-list-item-icon>
+
+
                         <v-list-item-content>
-                            <div>
-                                <span class="text-left">
-                                    <span class="overline mx-2 font-weight-bold" v-text="getConvertedUnixDateTime(result.dt)"></span>
-                                    <v-icon size="65">{{ result.sys.pod == 'd' ? 'mdi-weather-sunny' : 'mdi-weather-night' }}</v-icon>
-                                    <span class="overline mx-2 font-weight-bold" v-text="`${result.main.temp} \xB0C | ${convertTempToFahr(result.main.temp)} \xB0F`"></span>
-                                </span>
-                            </div>
-                            <div >
+                        <span class="overline mx-2 font-weight-bold text-md-body-1 text-xl-h3 text-lg-h3" v-text="getConvertedUnixDateTime(result.dt)"></span>
+                        <span class="overline mx-2 font-weight-bold" v-text="`${Math.round(result.main.temp)} \xB0C | ${convertTempToFahr(result.main.temp)} \xB0F`"></span>
+                            <!-- <div >
                                 <span class="text-left">
                                     <v-chip
                                         v-for="(info, ii) in result.weather" :key="ii+'A'"
@@ -60,7 +60,7 @@
                                     <v-icon size="30">mdi-water</v-icon>
                                     <span class="overline font-weight-bold" v-text="getPercentage( result.pop )+'%'"></span>
                                 </span>
-                            </div>
+                            </div> -->
                         </v-list-item-content>
                     </template>
 
@@ -144,7 +144,6 @@
                     </v-card>
                 </v-col>
             </v-row>
-            
         </div>
 
     </v-container>
@@ -191,8 +190,8 @@ export default {
 
                 this.cityInfo = {...openWeather.city}
                 this.weatherResults = [...openWeather.list]
-                // console.log('this.cityInfo', this.cityInfo)
-                // console.log('this.weatherResults', this.weatherResults)
+                console.log('this.cityInfo', this.cityInfo)
+                console.log('this.weatherResults', this.weatherResults)
         
                 // console.log(test)
                 this.chunkedData.splice(0)
@@ -217,7 +216,7 @@ export default {
         locationApi(){
             const customOptions = {...this.options}
             customOptions.headers.Authorization = 'fsq3kq2va8mH5Gjs51C0yOlLXfTI8/xgmppDy7jNuHKg3Xs='
-// https://api.openweathermap.org/data/2.5/forecast?lat=34.6937&lon=135.5022&appid=8e23e67b2f2928085f70c24a19440492&units=imperial
+            // https://api.openweathermap.org/data/2.5/forecast?lat=34.6937&lon=135.5022&appid=8e23e67b2f2928085f70c24a19440492&units=imperial
             fetch(`https://api.foursquare.com/v3/places/search?near=${this.location}%2C%20JP`, customOptions)
             .then(response => response.json())
             .then(({context, results}) => {
